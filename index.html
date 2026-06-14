@@ -287,6 +287,7 @@ body.program-garage .program-toggle button.active{ background:rgba(62,207,122,0.
 .els-row .data .set-token{white-space:nowrap}
 .els-row .data .set-token.top{color:var(--top)}
 .els-row .data .pr{color:var(--success)}
+.els-row .data .pr-vl{color:#f5a623;font-weight:600}
 .els-row .meta{color:var(--muted);font-size:9px;letter-spacing:0.04em;white-space:nowrap;flex-shrink:0}
 .els-arrow{position:absolute;right:12px;top:50%;transform:translateY(-50%);color:var(--muted);opacity:0.5;font-size:14px}
 
@@ -356,6 +357,106 @@ body.program-garage .program-toggle button.active{ background:rgba(62,207,122,0.
 .counter-warn .vol-counter-data strong{color:var(--warning)}
 .counter-over .vol-counter-data strong{color:var(--danger)}
 .counter-over{border-color:var(--danger);background:rgba(255,107,107,0.05)}
+
+/* Best-day indicator on session counter */
+.vol-counter-best{
+  display:flex;justify-content:space-between;align-items:center;
+  margin-top:10px;padding-top:8px;
+  border-top:1px solid var(--border);
+}
+.vc-best-label{
+  font-family:'DM Mono',monospace;font-size:8px;color:var(--muted);
+  letter-spacing:0.14em;text-transform:uppercase;font-weight:600;
+}
+.vc-best-data{
+  font-family:'DM Mono',monospace;font-size:11px;color:#f5a623;font-weight:600;
+}
+
+/* ============================================
+   CHART VIEW
+============================================ */
+.chart-header{
+  margin-bottom:16px;
+}
+.chart-controls{
+  display:flex;flex-direction:column;gap:10px;
+  margin-bottom:16px;
+}
+.chart-control-row{
+  display:flex;gap:6px;flex-wrap:wrap;
+}
+.chart-pill{
+  flex:1;min-width:0;padding:9px 6px;
+  background:transparent;border:1px solid var(--border-bright);
+  color:var(--text-dim);font-family:'DM Mono',monospace;
+  font-size:10px;letter-spacing:0.08em;text-transform:uppercase;
+  border-radius:6px;cursor:pointer;
+  white-space:nowrap;text-align:center;
+}
+.chart-pill.active{
+  background:var(--accent-bg);border-color:var(--accent);color:var(--accent);
+}
+.chart-pill:active{background:var(--surface2)}
+.chart-stats{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:8px;
+  margin-bottom:16px;
+}
+.chart-stat-card{
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:8px;padding:10px;text-align:center;
+}
+.chart-stat-val{
+  font-family:'DM Mono',monospace;font-size:16px;color:var(--white);
+  font-weight:600;line-height:1;margin-bottom:4px;
+}
+.chart-stat-lbl{
+  font-family:'DM Mono',monospace;font-size:8px;color:var(--muted);
+  letter-spacing:0.12em;text-transform:uppercase;
+}
+.chart-canvas-wrap{
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:10px;padding:14px 10px;margin-bottom:16px;
+  position:relative;
+}
+.chart-canvas-wrap svg{display:block;width:100%;height:auto}
+.chart-legend{
+  display:flex;flex-wrap:wrap;gap:14px;justify-content:center;
+  margin-top:10px;font-family:'DM Mono',monospace;font-size:10px;
+  color:var(--text-dim);
+}
+.chart-legend-item{display:flex;align-items:center;gap:5px}
+.chart-legend-dot{width:9px;height:9px;border-radius:50%}
+.chart-empty{
+  padding:40px 20px;text-align:center;color:var(--muted);
+  font-family:'DM Mono',monospace;font-size:11px;letter-spacing:0.06em;
+}
+.chart-best-card{
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:8px;padding:12px;margin-bottom:8px;
+}
+.chart-best-card .cb-name{
+  font-size:12px;color:var(--text);font-weight:600;margin-bottom:4px;
+}
+.chart-best-card .cb-data{
+  font-family:'DM Mono',monospace;font-size:11px;color:var(--text-dim);
+  display:flex;justify-content:space-between;
+}
+.chart-best-card .cb-vl{color:#f5a623;font-weight:600}
+.chart-section-title{
+  font-size:11px;color:var(--text-dim);font-weight:600;
+  letter-spacing:0.14em;text-transform:uppercase;
+  margin:20px 0 10px;
+}
+
+/* PR Badge banner on workout detail (best session ever) */
+.pr-badge-banner{
+  background:linear-gradient(135deg, rgba(245,166,35,0.15), rgba(245,166,35,0.05));
+  border:1px solid rgba(245,166,35,0.4);
+  border-radius:8px;padding:11px 14px;margin-bottom:14px;
+  font-family:'DM Mono',monospace;font-size:11px;
+  color:#f5a623;letter-spacing:0.08em;font-weight:600;
+  text-align:center;
+}
 
 /* Exercise skip/remove buttons */
 .ex-action-btn{
@@ -483,15 +584,15 @@ body.program-garage .program-toggle button.active{ background:rgba(62,207,122,0.
   padding:8px 8px calc(env(safe-area-inset-bottom, 0) + 8px);
 }
 .bottom-nav button{
-  flex:1;background:transparent;border:none;color:var(--muted);
-  padding:7px 4px;cursor:pointer;display:flex;flex-direction:column;
+  flex:1;min-width:0;background:transparent;border:none;color:var(--muted);
+  padding:7px 2px;cursor:pointer;display:flex;flex-direction:column;
   align-items:center;gap:3px;
 }
 .bottom-nav button.active{color:var(--accent)}
 .bottom-nav button .icon{font-size:16px;line-height:1}
 .bottom-nav button .label{
-  font-family:'DM Mono',monospace;font-size:8px;
-  letter-spacing:0.16em;text-transform:uppercase;
+  font-family:'DM Mono',monospace;font-size:7.5px;
+  letter-spacing:0.10em;text-transform:uppercase;
 }
 
 /* misc */
@@ -569,6 +670,9 @@ body.program-garage .program-toggle button.active{ background:rgba(62,207,122,0.
 <!-- HISTORY VIEW -->
 <section class="view" id="view-history"></section>
 
+<!-- CHART VIEW -->
+<section class="view" id="view-chart"></section>
+
 <!-- REFERENCE VIEW -->
 <section class="view" id="view-reference"></section>
 
@@ -577,19 +681,22 @@ body.program-garage .program-toggle button.active{ background:rgba(62,207,122,0.
 
 <!-- BOTTOM NAV -->
 <nav class="bottom-nav">
-  <button class="active" data-view="dashboard" data-action="nav" data-view="dashboard">
+  <button class="active" data-action="nav" data-view="dashboard">
     <span class="icon">◉</span><span class="label">Dashboard</span>
   </button>
-  <button data-view="train" data-action="nav" data-view="train">
+  <button data-action="nav" data-view="train">
     <span class="icon">⫶</span><span class="label">Train</span>
   </button>
-  <button data-view="history" data-action="nav" data-view="history">
+  <button data-action="nav" data-view="history">
     <span class="icon">⌛</span><span class="label">History</span>
   </button>
-  <button data-view="reference" data-action="nav" data-view="reference">
+  <button data-action="nav" data-view="chart">
+    <span class="icon">📈</span><span class="label">Chart</span>
+  </button>
+  <button data-action="nav" data-view="reference">
     <span class="icon">☰</span><span class="label">Reference</span>
   </button>
-  <button data-view="settings" data-action="nav" data-view="settings">
+  <button data-action="nav" data-view="settings">
     <span class="icon">⚙</span><span class="label">Settings</span>
   </button>
 </nav>
@@ -717,26 +824,28 @@ const PROGRAMS = {
     cycle: 'P · P · L · A · KB · P · P · L (barbell substitutes)',
     days: {
       h_push_a: {
-        name:'H-Push A', tag:'STRENGTH', desc:'BB Bench · OHP · Tri', category:'push', totalSets:20,
+        name:'H-Push A', tag:'STRENGTH', desc:'BB Bench · Dip · OHP · Tri', category:'push', totalSets:23,
         exercises:[
           {name:'Incline BB Bench Press', prescribed:4, scheme:'1×3-5 top + 3×6-8', top:true},
           {name:'Flat BB Bench Press', prescribed:3, scheme:'3×6-8'},
           {name:'Standing BB Overhead Press', prescribed:3, scheme:'3×6-8'},
+          {name:'Weighted Dip (Matador)', prescribed:3, scheme:'1×3-5 top + 2×6-8', top:true},
           {name:'BB Skullcrusher', prescribed:4, scheme:'1×3-5 top + 3×8-10', top:true, lp:true},
           {name:'Plate Front Raise / DB Lateral', prescribed:3, scheme:'3×12-15'},
           {name:'Ab Wheel Rollout', prescribed:3, scheme:'3×8-12'}
         ]
       },
       h_pull_a: {
-        name:'H-Pull A', tag:'STRENGTH', desc:'Pull-Up · BB Row · Hang Clean', category:'pull', totalSets:22,
+        name:'H-Pull A', tag:'STRENGTH', desc:'Pull-Up · BB Row · Landmine · Anti-Rotation', category:'pull', totalSets:24,
         exercises:[
           {name:'Pull-Up (weighted)', prescribed:4, scheme:'1×3-5 top + 3×5-8', top:true},
           {name:'Pendlay Row', prescribed:3, scheme:'3×6-8'},
           {name:'Hang Clean / Power Clean', prescribed:4, scheme:'4×3-5 (power focus)', top:true},
-          {name:'Single-Arm BB Row (Meadows)', prescribed:3, scheme:'3×8-10/side'},
+          {name:'Meadows Row (landmine)', prescribed:3, scheme:'3×8-10/side'},
           {name:'BB Shrug', prescribed:2, scheme:'2×8-10'},
           {name:'BB Curl (strict)', prescribed:3, scheme:'3×8-10', lp:true},
-          {name:'GHD Reverse Hyper / Face Pull (band)', prescribed:3, scheme:'3×12-15'}
+          {name:'GHD Reverse Hyper / Face Pull (band)', prescribed:3, scheme:'3×12-15'},
+          {name:'Landmine Russian Twist', prescribed:2, scheme:'2×12-15/side (RPE 6-7)'}
         ]
       },
       h_legs_a: {
@@ -767,13 +876,14 @@ const PROGRAMS = {
         ]
       },
       h_push_b: {
-        name:'H-Push B', tag:'HYPERTROPHY', desc:'BB Bench · Volume · Pump', category:'push', totalSets:20,
+        name:'H-Push B', tag:'HYPERTROPHY', desc:'BB Bench · Landmine · Volume', category:'push', totalSets:22,
         exercises:[
           {name:'Incline BB Bench Press', prescribed:4, scheme:'1×3-5 top + 3×8-12', top:true},
           {name:'Flat BB Bench Press (pause)', prescribed:3, scheme:'3×8-10 (2s pause)'},
           {name:'Seated BB Overhead Press', prescribed:3, scheme:'3×8-12'},
           {name:'BB JM Press / Close-Grip Bench', prescribed:3, scheme:'3×8-10', lp:true},
           {name:'Plate Front Raise / DB Lateral', prescribed:3, scheme:'3×15-20'},
+          {name:'Single-Arm Landmine Press', prescribed:2, scheme:'2×10-12/side (RPE 7-8)'},
           {name:'Ab Wheel Rollout', prescribed:3, scheme:'3×8-12'},
           {name:'Heavy Bag Round (optional)', prescribed:1, scheme:'1× 3-min finisher'}
         ]
@@ -908,7 +1018,9 @@ let state = {
   prevView: null,
   detailId: null,
   progressionExName: null,
-  progressionReturnView: 'detail'
+  progressionReturnView: 'detail',
+  chartFilter: 'all',
+  chartRange: 30
 };
 
 const STORAGE_KEY = 'strength_tracker_v2';
@@ -1038,6 +1150,42 @@ function getExerciseBest(name, program){
     else if(s.weight === bestW && s.reps > bestR){ bestR = s.reps; }
   }));
   return bestW > 0 ? {weight:bestW, reps:bestR} : null;
+}
+
+// Best session volume for a specific exercise (sum of VL across one session, best across all sessions)
+function getExerciseBestVL(name, program){
+  const history = getExerciseHistory(name, program);
+  let bestVL = 0, bestDate = null;
+  history.forEach(h => {
+    const sessionVL = h.sets.reduce((sum, s) => sum + (s.vl || s.weight * s.reps), 0);
+    if(sessionVL > bestVL){
+      bestVL = sessionVL;
+      bestDate = h.date;
+    }
+  });
+  return bestVL > 0 ? {vl: bestVL, date: bestDate} : null;
+}
+
+// Best total session volume for a specific day type (e.g. all H-Push A sessions)
+function getDayTypeBestVL(dayKey, program){
+  let bestVL = 0, bestDate = null;
+  for(const w of state.workouts){
+    if(w.dayKey !== dayKey) continue;
+    if((w.program||'ppla') !== program) continue;
+    const sessionVL = w.exercises.reduce((sum, ex) =>
+      sum + ex.sets.reduce((s2, s) => s2 + (s.vl || s.weight * s.reps), 0), 0);
+    if(sessionVL > bestVL){
+      bestVL = sessionVL;
+      bestDate = w.date;
+    }
+  }
+  return bestVL > 0 ? {vl: bestVL, date: bestDate} : null;
+}
+
+// Compute session total VL for current active workout
+function getSessionTotalVL(workout){
+  return workout.exercises.reduce((sum, ex) =>
+    sum + ex.sets.reduce((s2, s) => s2 + (s.vl || (s.weight && s.reps ? s.weight * s.reps : 0)), 0), 0);
 }
 
 /* ============================================
@@ -1191,6 +1339,15 @@ function renderActive(){
   if(loggedSets >= cap) counterClass = 'counter-over';
   else if(loggedSets >= cap - 2) counterClass = 'counter-warn';
 
+  // Best total VL for this day type
+  const dayBest = getDayTypeBestVL(a.dayKey, a.program);
+  const dayBestHTML = dayBest
+    ? `<div class="vol-counter-best">
+         <span class="vc-best-label">BEST ${a.dayDef.name}</span>
+         <span class="vc-best-data">${fmtVL(dayBest.vl)} lb · ${new Date(dayBest.date).toLocaleDateString('en-US',{month:'short',day:'numeric'})}</span>
+       </div>`
+    : '';
+
   let html = `
     <button class="back-link" type="button" data-action="cancel-active">← Cancel</button>
     <div class="workout-detail-header" style="margin-bottom:14px">
@@ -1204,6 +1361,7 @@ function renderActive(){
         <span class="vol-counter-data"><strong>${loggedSets}</strong> / ${cap} sets · ${fmtVL(loggedVL)} lb</span>
       </div>
       <div class="vol-counter-bar"><div class="vol-counter-fill" style="width:${pct}%"></div></div>
+      ${dayBestHTML}
     </div>
   `;
 
@@ -1244,6 +1402,14 @@ function renderExerciseCard(ex, exIdx){
          </div>`
       : '';
 
+    const bestVL = getExerciseBestVL(ex.name, state.active.program);
+    const bestVLHTML = bestVL
+      ? `<div class="els-row">
+           <span class="lbl">BEST VL</span>
+           <span class="data"><span class="pr-vl">${fmtVL(bestVL.vl)} lb</span></span>
+         </div>`
+      : '';
+
     lastHTML = `
       <div class="exercise-last-session" data-action="open-progression" data-ex-name="${encodeURIComponent(ex.name)}" data-return="active">
         <div class="els-row">
@@ -1252,6 +1418,7 @@ function renderExerciseCard(ex, exIdx){
           <span class="meta">${timeAgo(last.date)}</span>
         </div>
         ${bestHTML}
+        ${bestVLHTML}
         <span class="els-arrow">›</span>
       </div>
     `;
@@ -1477,12 +1644,20 @@ function renderDetail(){
   const totalReps = (w.exercises||[]).reduce((s,e)=>s+(e.sets||[]).reduce((a,set)=>a+(set.reps||0), 0), 0);
   const avgLoad = totalSets > 0 ? Math.round(w.totalVL / totalSets) : 0;
 
+  // Check if this is the best ever for this day type in this program
+  const dayBest = getDayTypeBestVL(w.dayKey, w.program||'ppla');
+  const isDayPR = dayBest && Math.abs(dayBest.vl - (w.totalVL||0)) < 0.01 && dayBest.date === w.date;
+  const prBadgeHTML = isDayPR
+    ? `<div class="pr-badge-banner">🏆 BEST ${w.name} EVER · ${fmtVL(w.totalVL||0)} lb</div>`
+    : '';
+
   let html = `
     <button class="back-link" data-action="back-from-detail">← Back</button>
     <div class="workout-detail-header">
       <div class="wd-name">${w.name}</div>
       <div class="wd-date">${fmtDate(w.date)}</div>
     </div>
+    ${prBadgeHTML}
     <div class="summary-block">
       <div class="sb-vl">${fmtVL(w.totalVL||0)}</div>
       <div class="sb-vl-label">Total Volume Load · LB</div>
@@ -1719,6 +1894,196 @@ function renderHistory(){
 }
 
 /* ============================================
+   CHART VIEW — VOLUME PROGRESSION
+============================================ */
+function renderChart(){
+  const filter = state.chartFilter || 'all';
+  const range = state.chartRange || 30;
+
+  // Get filtered workouts (across all programs by default)
+  const now = Date.now();
+  const cutoff = range === 0 ? 0 : now - (range * 24 * 60 * 60 * 1000);
+
+  let workouts = state.workouts.slice();
+  if(filter !== 'all'){
+    workouts = workouts.filter(w => (w.program||'ppla') === filter);
+  }
+  workouts = workouts.filter(w => new Date(w.date).getTime() >= cutoff);
+  workouts.sort((a,b) => new Date(a.date) - new Date(b.date));
+
+  // Build data points with session VL
+  const points = workouts.map(w => ({
+    date: new Date(w.date),
+    vl: getSessionTotalVL(w),
+    program: w.program || 'ppla',
+    name: w.name,
+    dayKey: w.dayKey,
+    id: w.id
+  }));
+
+  // Stats
+  const totalVL = points.reduce((sum, p) => sum + p.vl, 0);
+  const avgVL = points.length ? Math.round(totalVL / points.length) : 0;
+  const maxVL = points.length ? Math.max(...points.map(p => p.vl)) : 0;
+
+  let html = `
+    <div class="chart-header">
+      <div class="section-header">Volume Progression <span class="meta">${points.length} sessions</span></div>
+    </div>
+
+    <div class="chart-controls">
+      <div class="chart-control-row">
+        <button class="chart-pill ${filter==='all'?'active':''}" type="button" data-action="chart-filter" data-filter="all">All</button>
+        <button class="chart-pill ${filter==='ppla'?'active':''}" type="button" data-action="chart-filter" data-filter="ppla">PPLA</button>
+        <button class="chart-pill ${filter==='home'?'active':''}" type="button" data-action="chart-filter" data-filter="home">Home</button>
+        <button class="chart-pill ${filter==='garage'?'active':''}" type="button" data-action="chart-filter" data-filter="garage">Flex</button>
+      </div>
+      <div class="chart-control-row">
+        <button class="chart-pill ${range===7?'active':''}" type="button" data-action="chart-range" data-range="7">7d</button>
+        <button class="chart-pill ${range===30?'active':''}" type="button" data-action="chart-range" data-range="30">30d</button>
+        <button class="chart-pill ${range===90?'active':''}" type="button" data-action="chart-range" data-range="90">90d</button>
+        <button class="chart-pill ${range===0?'active':''}" type="button" data-action="chart-range" data-range="0">All</button>
+      </div>
+    </div>
+  `;
+
+  if(points.length === 0){
+    html += `<div class="chart-empty">No sessions in this window.<br>Try a longer range or remove the filter.</div>`;
+    document.getElementById('view-chart').innerHTML = html;
+    return;
+  }
+
+  // Stats cards
+  html += `
+    <div class="chart-stats">
+      <div class="chart-stat-card">
+        <div class="chart-stat-val">${fmtVL(totalVL)}</div>
+        <div class="chart-stat-lbl">Total lb</div>
+      </div>
+      <div class="chart-stat-card">
+        <div class="chart-stat-val">${fmtVL(avgVL)}</div>
+        <div class="chart-stat-lbl">Avg / session</div>
+      </div>
+      <div class="chart-stat-card">
+        <div class="chart-stat-val">${fmtVL(maxVL)}</div>
+        <div class="chart-stat-lbl">Peak session</div>
+      </div>
+    </div>
+  `;
+
+  // SVG chart
+  html += `<div class="chart-canvas-wrap">${buildVolumeChartSVG(points)}</div>`;
+
+  // Legend
+  const programs = [...new Set(points.map(p => p.program))];
+  if(programs.length > 1 || filter === 'all'){
+    html += `<div class="chart-legend">`;
+    if(points.some(p => p.program === 'ppla')) html += `<div class="chart-legend-item"><span class="chart-legend-dot" style="background:#4a9eff"></span>PPLA</div>`;
+    if(points.some(p => p.program === 'home')) html += `<div class="chart-legend-item"><span class="chart-legend-dot" style="background:#f5a623"></span>Home</div>`;
+    if(points.some(p => p.program === 'garage')) html += `<div class="chart-legend-item"><span class="chart-legend-dot" style="background:#3ecf7a"></span>Garage Flex</div>`;
+    html += `</div>`;
+  }
+
+  // Best per day type (across all programs in current filter)
+  const dayTypeBests = {};
+  workouts.forEach(w => {
+    const key = (w.program||'ppla') + '|' + w.dayKey + '|' + w.name;
+    const vl = getSessionTotalVL(w);
+    if(!dayTypeBests[key] || vl > dayTypeBests[key].vl){
+      dayTypeBests[key] = {name: w.name, program: w.program||'ppla', vl, date: w.date};
+    }
+  });
+  const dayTypeList = Object.values(dayTypeBests).sort((a,b)=>b.vl-a.vl);
+
+  if(dayTypeList.length){
+    html += `<div class="chart-section-title">Best Session by Day Type</div>`;
+    dayTypeList.forEach(d => {
+      const accent = d.program === 'home' ? '#f5a623' : d.program === 'garage' ? '#3ecf7a' : '#4a9eff';
+      const progLbl = d.program === 'home' ? 'Home' : d.program === 'garage' ? 'Flex' : 'PPLA';
+      html += `
+        <div class="chart-best-card">
+          <div class="cb-name"><span style="color:${accent}">●</span> ${d.name} <span style="color:var(--muted);font-size:10px;font-weight:400">${progLbl}</span></div>
+          <div class="cb-data">
+            <span>${new Date(d.date).toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'})}</span>
+            <span class="cb-vl">${fmtVL(d.vl)} lb</span>
+          </div>
+        </div>
+      `;
+    });
+  }
+
+  document.getElementById('view-chart').innerHTML = html;
+}
+
+function buildVolumeChartSVG(points){
+  if(!points.length) return '';
+
+  const W = 340, H = 200;
+  const padL = 36, padR = 12, padT = 14, padB = 28;
+  const plotW = W - padL - padR;
+  const plotH = H - padT - padB;
+
+  const vls = points.map(p => p.vl);
+  const minVL = 0;
+  const maxVL = Math.max(...vls) * 1.1;
+  const dates = points.map(p => p.date.getTime());
+  const minD = Math.min(...dates);
+  const maxD = Math.max(...dates);
+  const dRange = maxD - minD || 1;
+
+  const xFor = d => padL + (plotW * ((d - minD) / dRange));
+  const yFor = v => padT + plotH - (plotH * ((v - minVL) / (maxVL - minVL || 1)));
+
+  // Y-axis grid lines and labels (4 ticks)
+  let grid = '';
+  let yLabels = '';
+  for(let i = 0; i <= 4; i++){
+    const v = minVL + ((maxVL - minVL) * i / 4);
+    const y = yFor(v);
+    grid += `<line x1="${padL}" y1="${y}" x2="${W-padR}" y2="${y}" stroke="#252a38" stroke-width="0.5"/>`;
+    const lbl = v >= 1000 ? (v/1000).toFixed(1)+'k' : Math.round(v);
+    yLabels += `<text x="${padL-4}" y="${y+3}" text-anchor="end" font-size="9" fill="#606880" font-family="DM Mono,monospace">${lbl}</text>`;
+  }
+
+  // X-axis labels (start, middle, end dates)
+  let xLabels = '';
+  const dateLabel = ts => {
+    const d = new Date(ts);
+    return d.toLocaleDateString('en-US', {month:'short', day:'numeric'});
+  };
+  xLabels += `<text x="${padL}" y="${H-8}" text-anchor="start" font-size="9" fill="#606880" font-family="DM Mono,monospace">${dateLabel(minD)}</text>`;
+  if(points.length > 2){
+    xLabels += `<text x="${W/2}" y="${H-8}" text-anchor="middle" font-size="9" fill="#606880" font-family="DM Mono,monospace">${dateLabel((minD+maxD)/2)}</text>`;
+  }
+  xLabels += `<text x="${W-padR}" y="${H-8}" text-anchor="end" font-size="9" fill="#606880" font-family="DM Mono,monospace">${dateLabel(maxD)}</text>`;
+
+  // Build line path (connecting all points in order)
+  let pathD = '';
+  points.forEach((p, i) => {
+    const x = xFor(p.date.getTime());
+    const y = yFor(p.vl);
+    pathD += (i === 0 ? 'M' : 'L') + x.toFixed(1) + ',' + y.toFixed(1);
+  });
+
+  // Build colored dots for each point
+  const colorFor = prog => prog === 'home' ? '#f5a623' : prog === 'garage' ? '#3ecf7a' : '#4a9eff';
+  let dots = '';
+  points.forEach(p => {
+    const x = xFor(p.date.getTime());
+    const y = yFor(p.vl);
+    dots += `<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="3.5" fill="${colorFor(p.program)}" stroke="#0c0e14" stroke-width="1.5"/>`;
+  });
+
+  return `<svg viewBox="0 0 ${W} ${H}" xmlns="http://www.w3.org/2000/svg" aria-label="Volume progression chart">
+    ${grid}
+    ${yLabels}
+    ${xLabels}
+    <path d="${pathD}" stroke="#9ba3b8" stroke-width="1.2" fill="none" opacity="0.4"/>
+    ${dots}
+  </svg>`;
+}
+
+/* ============================================
    REFERENCE
 ============================================ */
 function renderReference(){
@@ -1756,7 +2121,31 @@ function renderReference(){
           • <strong style="color:var(--text)">Use when:</strong> Training in garage instead of work gym or PF<br>
           • <strong style="color:var(--text)">Substitutes for:</strong> Match H-Push A to PPLA Push A, H-Pull A to Pull A, etc.<br>
           • <strong style="color:var(--text)">Tracks separately:</strong> BB Bench vs DB Bench have different PRs<br>
-          • <strong style="color:var(--text)">Equipment used:</strong> Rack + bench + Ohio bar + plates + GHD + ab roller + StrongNeck bar + heavy bag
+          • <strong style="color:var(--text)">Equipment used:</strong> Rack + bench + Ohio bar + plates + GHD + ab roller + StrongNeck bar + heavy bag + landmine + Matador dip + dip belt
+        </div>
+      </div>
+      <div class="ref-program-title" style="margin-top:18px">Landmine + Dip Protocol</div>
+      <div class="ref-day-card">
+        <div style="font-size:12px;color:var(--text-dim);line-height:1.6">
+          <strong style="color:var(--text)">Weighted Dip (H-Push A):</strong><br>
+          • Start: bodyweight × 6-8 reps for 3 sets<br>
+          • Add belt weight: 25 lb when 3×8 clean<br>
+          • Progress: TOP set 3-5 reps + 2 working sets 6-8 reps<br><br>
+
+          <strong style="color:var(--text)">Meadows Row landmine (H-Pull A):</strong><br>
+          • Start: 45-65 lb on bar end<br>
+          • 3×8-10/side, RPE 7-8<br>
+          • Stagger stance, elbow drives back &amp; up<br><br>
+
+          <strong style="color:var(--text)">Single-Arm Landmine Press (H-Push B):</strong><br>
+          • Start: 45-50 lb<br>
+          • 2×10-12/side, RPE 7-8<br>
+          • Standing or half-kneeling — keep moderate, lateral delt focus<br><br>
+
+          <strong style="color:var(--text)">Landmine Russian Twist (H-Pull A):</strong><br>
+          • Start: just the bar (45 lb)<br>
+          • 2×12-15/side, RPE 6-7 — anti-rotation focus, not max strength<br>
+          • Keep arms extended, rotate from hips not shoulders
         </div>
       </div>
       <div class="ref-program-title" style="margin-top:18px">Barbell PR Targets</div>
@@ -1921,6 +2310,7 @@ function render(){
     case 'dashboard': renderDashboard(); break;
     case 'train': renderTrain(); break;
     case 'history': renderHistory(); break;
+    case 'chart': renderChart(); break;
     case 'reference': renderReference(); break;
     case 'settings': renderSettings(); break;
     case 'active': renderActive(); break;
@@ -1984,6 +2374,16 @@ document.addEventListener('click', function(e){
       case 'clear-all': clearAll(); break;
       case 'close-modal': closeModal(); break;
       case 'trigger-import': document.getElementById('import-file').click(); break;
+      case 'chart-filter':
+        state.chartFilter = t.dataset.filter;
+        save();
+        renderChart();
+        break;
+      case 'chart-range':
+        state.chartRange = parseInt(t.dataset.range);
+        save();
+        renderChart();
+        break;
       default: console.warn('Unknown action:', action);
     }
   } catch(err){
